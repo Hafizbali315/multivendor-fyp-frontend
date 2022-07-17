@@ -32,7 +32,7 @@ export const createOrder = (order) => async (dispatch, getState) => {
 		const {
 			userSignin: { userInfo },
 		} = getState()
-		const { data } = await Axios.post('http://localhost:6000/api/orders', order, {
+		const { data } = await Axios.post('https://multi-vendor-fyp-backend.herokuapp.com/api/orders', order, {
 			headers: {
 				Authorization: `Bearer ${userInfo.token}`,
 			},
@@ -54,7 +54,7 @@ export const detailsOrder = (orderId) => async (dispatch, getState) => {
 		userSignin: { userInfo },
 	} = getState()
 	try {
-		const { data } = await Axios.get(`http://localhost:6000/api/orders/${orderId}`, {
+		const { data } = await Axios.get(`https://multi-vendor-fyp-backend.herokuapp.com/api/orders/${orderId}`, {
 			headers: { Authorization: `Bearer ${userInfo.token}` },
 		})
 		dispatch({ type: ORDER_DETAILS_SUCCESS, payload: data })
@@ -70,7 +70,7 @@ export const payOrder = (order, paymentResult) => async (dispatch, getState) => 
 		userSignin: { userInfo },
 	} = getState()
 	try {
-		const { data } = Axios.put(`http://localhost:6000/api/orders/${order._id}/pay`, paymentResult, {
+		const { data } = Axios.put(`https://multi-vendor-fyp-backend.herokuapp.com/api/orders/${order._id}/pay`, paymentResult, {
 			headers: { Authorization: `Bearer ${userInfo.token}` },
 		})
 		dispatch({ type: ORDER_PAY_SUCCESS, payload: data })
@@ -85,7 +85,7 @@ export const listOrderMine = () => async (dispatch, getState) => {
 		userSignin: { userInfo },
 	} = getState()
 	try {
-		const { data } = await Axios.get('http://localhost:6000/api/orders/mine', {
+		const { data } = await Axios.get('https://multi-vendor-fyp-backend.herokuapp.com/api/orders/mine', {
 			headers: {
 				Authorization: `Bearer ${userInfo.token}`,
 			},
@@ -104,7 +104,7 @@ export const listOrders =
 			userSignin: { userInfo },
 		} = getState()
 		try {
-			const { data } = await Axios.get(`http://localhost:6000/api/orders?seller=${seller}`, {
+			const { data } = await Axios.get(`https://multi-vendor-fyp-backend.herokuapp.com/api/orders?seller=${seller}`, {
 				headers: { Authorization: `Bearer ${userInfo.token}` },
 			})
 			console.log(data)
@@ -120,7 +120,7 @@ export const deleteOrder = (orderId) => async (dispatch, getState) => {
 		userSignin: { userInfo },
 	} = getState()
 	try {
-		const { data } = Axios.delete(`http://localhost:6000/api/orders/${orderId}`, {
+		const { data } = Axios.delete(`https://multi-vendor-fyp-backend.herokuapp.com/api/orders/${orderId}`, {
 			headers: { Authorization: `Bearer ${userInfo.token}` },
 		})
 		dispatch({ type: ORDER_DELETE_SUCCESS, payload: data })
@@ -137,7 +137,7 @@ export const deliverOrder = (orderId) => async (dispatch, getState) => {
 	} = getState()
 	try {
 		const { data } = Axios.put(
-			`http://localhost:6000/api/orders/${orderId}/deliver`,
+			`https://multi-vendor-fyp-backend.herokuapp.com/api/orders/${orderId}/deliver`,
 			{},
 			{
 				headers: { Authorization: `Bearer ${userInfo.token}` },
@@ -156,7 +156,7 @@ export const summaryOrder = () => async (dispatch, getState) => {
 		userSignin: { userInfo },
 	} = getState()
 	try {
-		const { data } = await Axios.get('http://localhost:6000/api/orders/summary', {
+		const { data } = await Axios.get('https://multi-vendor-fyp-backend.herokuapp.com/api/orders/summary', {
 			headers: { Authorization: `Bearer ${userInfo.token}` },
 		})
 		dispatch({ type: ORDER_SUMMARY_SUCCESS, payload: data })
