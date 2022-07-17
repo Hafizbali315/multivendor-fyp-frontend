@@ -1,3 +1,5 @@
+// "build": "cd frontend && npm install && npm run build",
+
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom'
